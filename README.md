@@ -68,10 +68,10 @@ NOTE: This can take considerable amount of time to run. If all processing parame
 
     - SortbySize.m - Sorts the compiled and filtered data by vesicle diameter, centered around integer values +/- 0.5 microns (e.g. 3 micron group = 3 micron +/- 0.5 micron). Outputs the same data as "Filter_Ves.m" but with "_size" appended to denote the size sorted state. Variables are now cells, with the column number denoting the vesicle diameter in microns (e.g. column 10 is the 10 +/- 0.5 micron vesicles group). Empty columns means no vesicles of that size exists.
 
---- Optional Code ----
+--- Optional Code Files ----
 
-O1) GenerateMontageSegmented.m - performs the same task as GenerateMontageSelectedCV.m but includes all segmented objects. Usually unnecessary to run both unless troubleshooting segmentation issues.
+1. GenerateMontageSegmented.m - performs the same task as GenerateMontageSelectedCV.m but includes all segmented objects. Usually unnecessary to run both unless troubleshooting segmentation issues.
 
-O2) Crop_conditions.m - Creates single image crops of individual vesicles of a given size to output folder. This outputs the images from the slice used to segment the vesicles. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
+2. Crop_conditions.m - Creates single image crops of individual vesicles of a given size to output folder. This outputs the images from the slice used to segment the vesicles. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
 
-O3) Crop_condition_full.m - Creates timeseries image crops of individiual vesicles of a desired size to a output folder. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
+3. Crop_condition_full.m - Creates timeseries image crops of individiual vesicles of a desired size to a output folder. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
