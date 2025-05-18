@@ -41,37 +41,36 @@ Code requires MATLAB version R2021a or greater with packages:
 
 4. "Run_All.m" will run through the following codes described here in order:
 
-    a) SegmentObjects_Clock.m - !!NOTE: MUST INPUT XSCALE MANUALLY!! Will segment all objects in the .tif images and measure both total and core intensity from the objects. Outputs a .mat file per .tif image into the generated "Segmented_mat" folder.
+    - SegmentObjects_Clock.m - !!NOTE: MUST INPUT XSCALE MANUALLY!! Will segment all objects in the .tif images and measure both total and core intensity from the objects. Outputs a .mat file per .tif image into the generated "Segmented_mat" folder.
 
-    b) SelectObjects_Clock.m - Selects likely vesicles from segmented objects using a intenity analysis method. Intensity range is automatically selected but can be adjusted if necessary. Outputs a mat file per tif image into the generated "Selected_mat_all" folder.
+    - SelectObjects_Clock.m - Selects likely vesicles from segmented objects using a intenity analysis method. Intensity range is automatically selected but can be adjusted if necessary. Outputs a mat file per tif image into the generated "Selected_mat_all" folder.
 
-    c) GenerateMontageSelected.m - Provides reference images to check processing quality. Outputs a montage images of selected and segmented vesicles, one for each tif image file in the "Selected_montage" folder. Will output a reference image on the left side. On the right side, it will contain the reference image with segmented (white overlay) and selected vesicles (red overlay).
+    - GenerateMontageSelected.m - Provides reference images to check processing quality. Outputs a montage images of selected and segmented vesicles, one for each tif image file in the "Selected_montage" folder. Will output a reference image on the left side. On the right side, it will contain the reference image with segmented (white overlay) and selected vesicles (red overlay).
 NOTE: This can take considerable amount of time to run. If all processing parameters are known to work, you could consider skipping this processing step.
 
-    d) Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured. 
-      ````
-      Key Variables for d)
-      bgshapes 	- List of background intensity values over time of each tif image.
-      dia 	 	- List of diameter values in microns for each vesicle.
-      encap 	 	- List of total encapsulated intensity values over time (e.g. intensity of the clock reaction)
-      encapcore 	- List of core encapsulated intensity values over time (not typically used for clock data)
-      redpixels	- List of all pixel intensities for the lipid channel from each vesicle (e.g. DOPC-RhPE)
-      red_chan	- List of total intensity values from the lipid channel (e.g. DOPC-RhPE)
-      pos 		- List of file numbers each vescile comes from (note might not match file names, confirm processing order)
-      shapes		- Table of segmented vesicle data from lipid channel, includes area, bounding box, and eccentricity.
-      t		- Time vector with units in hours.
-      Xscale 		- Xscale value (micron/pixel) determined from the original czi metadata (not included in tif files).
-      ````
+    - Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured. 
+          ````
+          Key Variables for "Complied_data.mat"
+          bgshapes 	- List of background intensity values over time of each tif image.
+          dia 	 	- List of diameter values in microns for each vesicle.
+          encap 	 	- List of total encapsulated intensity values over time (e.g. intensity of the clock reaction)
+          encapcore 	- List of core encapsulated intensity values over time (not typically used for clock data)
+          redpixels	- List of all pixel intensities for the lipid channel from each vesicle (e.g. DOPC-RhPE)
+          red_chan	- List of total intensity values from the lipid channel (e.g. DOPC-RhPE)
+          pos 		- List of file numbers each vescile comes from (note might not match file names, confirm processing order)
+          shapes		- Table of segmented vesicle data from lipid channel, includes area, bounding box, and eccentricity.
+          t		- Time vector with units in hours.
+          Xscale 		- Xscale value (micron/pixel) determined from the original czi metadata (not included in tif files).
+          ````
 
-    e) Filter_Ves.m - Uses an intensity analysis to filter out vesicles that move out of the ROI during the extent of the timeseries. Outputs the same data as d) but with "_filt" appended to denote the filtered state. 
+    - Filter_Ves.m - Uses an intensity analysis to filter out vesicles that move out of the ROI during the extent of the timeseries. Outputs the same data as "Compile_Data.m" but with "_filt" appended to denote the filtered state. 
 
-
-    f) SortbySize.m - Sorts the compiled and filtered data by vesicle diameter, centered around integer values +/- 0.5 microns (e.g. 3 micron group = 3 micron +/- 0.5 micron). Outputs the same data as e) but with "_size" appended to denote the size sorted state. Variables are now cells, with the column number denoting the vesicle diameter in microns (e.g. column 10 is the 10 +/- 0.5 micron vesicles group). Empty columns means no vesicles of that size exists.
+    - SortbySize.m - Sorts the compiled and filtered data by vesicle diameter, centered around integer values +/- 0.5 microns (e.g. 3 micron group = 3 micron +/- 0.5 micron). Outputs the same data as "Filter_Ves.m" but with "_size" appended to denote the size sorted state. Variables are now cells, with the column number denoting the vesicle diameter in microns (e.g. column 10 is the 10 +/- 0.5 micron vesicles group). Empty columns means no vesicles of that size exists.
 
 --- Optional Code ----
 
-O1) GenerateMontageSegmented.m performs the same task as GenerateMontageSelectedCV.m but without the selected vesicle data. Usually unnecessary to run both unless troubleshooting something specific.
+O1) GenerateMontageSegmented.m - performs the same task as GenerateMontageSelectedCV.m but includes all segmented objects. Usually unnecessary to run both unless troubleshooting segmentation issues.
 
-O2) Crop_conditions.m - Creates single images of individual vesicles of a given size to output folder. This outputs the images from the slice used to segment the vesicles. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
+O2) Crop_conditions.m - Creates single image crops of individual vesicles of a given size to output folder. This outputs the images from the slice used to segment the vesicles. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
 
-O3) Crop_condition_full.m - Creates timeseries images of individiual vesicles of a desired size to a output folder. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
+O3) Crop_condition_full.m - Creates timeseries image crops of individiual vesicles of a desired size to a output folder. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
