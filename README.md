@@ -50,19 +50,19 @@ NOTE: This can take considerable amount of time to run. If all processing parame
 
     - Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured.
       
-          ```
-          Key Variables for "Complied_data.mat"
-          bgshapes 	- List of background intensity values over time of each tif image.
-          dia 	 	- List of diameter values in microns for each vesicle.
-          encap 	 	- List of total encapsulated intensity values over time (e.g. intensity of the clock reaction)
-          encapcore 	- List of core encapsulated intensity values over time (not typically used for clock data)
-          redpixels	- List of all pixel intensities for the lipid channel from each vesicle (e.g. DOPC-RhPE)
-          red_chan	- List of total intensity values from the lipid channel (e.g. DOPC-RhPE)
-          pos 		- List of file numbers each vescile comes from (note might not match file names, confirm processing order)
-          shapes		- Table of segmented vesicle data from lipid channel, includes area, bounding box, and eccentricity.
-          t		- Time vector with units in hours.
-          Xscale 		- Xscale value (micron/pixel) determined from the original czi metadata (not included in tif files).
-          ```
+      ```
+      Key Variables for "Complied_data.mat"
+      bgshapes 	- List of background intensity values over time of each tif image.
+      dia 	 	- List of diameter values in microns for each vesicle.
+      encap 	 	- List of total encapsulated intensity values over time (e.g. intensity of the clock reaction)
+      encapcore 	- List of core encapsulated intensity values over time (not typically used for clock data)
+      redpixels	- List of all pixel intensities for the lipid channel from each vesicle (e.g. DOPC-RhPE)
+      red_chan	- List of total intensity values from the lipid channel (e.g. DOPC-RhPE)
+      pos 		- List of file numbers each vescile comes from (note might not match file names, confirm processing order)
+      shapes		- Table of segmented vesicle data from lipid channel, includes area, bounding box, and eccentricity.
+      t		- Time vector with units in hours.
+      Xscale 		- Xscale value (micron/pixel) determined from the original czi metadata (not included in tif files).
+      ```
 
     - Filter_Ves.m - Uses an intensity analysis to filter out vesicles that move out of the ROI during the extent of the timeseries. Outputs the same data as "Compile_Data.m" but with "_filt" appended to denote the filtered state. 
 
