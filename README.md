@@ -1,4 +1,4 @@
-# PTO-GUV_Timeseries_Analysis
+# PTO-GUV_TimeseriesSegmentation
 
 Authors: Alexander Zhan Tu Li and Anand Bala Subramaniam
 
