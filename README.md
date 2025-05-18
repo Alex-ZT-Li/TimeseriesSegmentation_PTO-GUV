@@ -15,7 +15,7 @@ Code requires MATLAB version R2021a or greater with packages:
 - (5 of 6) Statistics and Machine Learning Toolbox, version 12.1 or greater.
 - (6 of 6) Computer Vision Toolbox, version 10.0 or greater.
 
-(Note: Tested on MATLAB version R2021a)
+(Tested on MATLAB version R2021a and Windows 10 & 11 Build 26100)
 
 ## Instructions
 
