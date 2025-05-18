@@ -48,7 +48,8 @@ Code requires MATLAB version R2021a or greater with packages:
     - GenerateMontageSelected.m - Provides reference images to check processing quality. Outputs a montage images of selected and segmented vesicles, one for each tif image file in the "Selected_montage" folder. Will output a reference image on the left side. On the right side, it will contain the reference image with segmented (white overlay) and selected vesicles (red overlay).
 NOTE: This can take considerable amount of time to run. If all processing parameters are known to work, you could consider skipping this processing step.
 
-    - Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured. 
+    - Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured.
+      
           ```
           Key Variables for "Complied_data.mat"
           bgshapes 	- List of background intensity values over time of each tif image.
