@@ -19,7 +19,7 @@ Code requires MATLAB version R2021a or greater with packages:
 
 ## Instructions
 
-1. All .czi timeseries files must first be aligned using MultiStackReg plugin with the “Translation” algorithm in ImageJ or FIJI to align the images. This the image must be cropped so the empty black regions created due to the translation of the image during alignment are removed for ALL slices. Save the new aligned and cropped images as .tif images.
+1. All timeseries files must first be aligned using MultiStackReg plugin with the “Translation” algorithm in ImageJ or FIJI to align the images. This the image must be cropped so the empty black regions created due to the translation of the image during alignment are removed for ALL slices. Save the new aligned and cropped images as .tif images.
 
 2. Place all .m files (10 total) in the same folders with the .tif image files.
 
