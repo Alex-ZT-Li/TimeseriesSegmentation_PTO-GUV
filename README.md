@@ -23,7 +23,7 @@ Code requires MATLAB version R2021a or greater with packages:
 
 2. Place all .m files (10 total) in the same folders with the .tif image files.
 
-    ````
+    ```
     File List:
     1. Run_All.m
     2. SegmentObjects_Clock.m
@@ -35,7 +35,7 @@ Code requires MATLAB version R2021a or greater with packages:
     8. GenerateMontageSegmented.m
     9. Crop_conditions.m
     10. Crop_condition_full.m
-    ````
+    ```
 
 3. Run "Run_All.m" for running the entire processing chain.
 
@@ -49,7 +49,7 @@ Code requires MATLAB version R2021a or greater with packages:
 NOTE: This can take considerable amount of time to run. If all processing parameters are known to work, you could consider skipping this processing step.
 
     - Compile_Data.m - Compiles all relevant vesicle data from the "Selected_mat_all" folder into one output file "Compiled_data.mat" in the "Processed_mat" folder. Note a vesicle diameter minimum value must be set here in the parameters. Defaults to 1 microns so only GUVs (by definition >= 1 micron) are captured. 
-          ````
+          ```
           Key Variables for "Complied_data.mat"
           bgshapes 	- List of background intensity values over time of each tif image.
           dia 	 	- List of diameter values in microns for each vesicle.
@@ -61,7 +61,7 @@ NOTE: This can take considerable amount of time to run. If all processing parame
           shapes		- Table of segmented vesicle data from lipid channel, includes area, bounding box, and eccentricity.
           t		- Time vector with units in hours.
           Xscale 		- Xscale value (micron/pixel) determined from the original czi metadata (not included in tif files).
-          ````
+          ```
 
     - Filter_Ves.m - Uses an intensity analysis to filter out vesicles that move out of the ROI during the extent of the timeseries. Outputs the same data as "Compile_Data.m" but with "_filt" appended to denote the filtered state. 
 
