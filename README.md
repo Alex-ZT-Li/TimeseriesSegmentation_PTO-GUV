@@ -75,3 +75,11 @@ NOTE: This can take considerable amount of time to run. If all processing parame
 2. Crop_conditions.m - Creates single image crops of individual vesicles of a given size to output folder. This outputs the images from the slice used to segment the vesicles. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
 
 3. Crop_condition_full.m - Creates timeseries image crops of individiual vesicles of a desired size to a output folder. Must choose what vesicle diameter group to run (e.g. size = 3, will output 3 +/- 0.5 micron diameter vesicles images).
+
+
+## Demo
+A sample timeseries dataset has been included (sample is a significantly cropped and shorted timeseries due to size constraints). Follow the above instructions to run the code on the sample dataset. 
+
+Outputs are explained in the instructions section above. The final output will be the "Size_sorted_data.mat" located in the "Processed_mat" folder and contains the GUV and PTO signal data sorted by vesicle size.
+
+Expected Demo Runtime = <10 minutes 
